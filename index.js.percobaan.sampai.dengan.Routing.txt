@@ -1,0 +1,135 @@
+const express = require("express");
+const app = express();
+const port = 3000;
+const hostname = "127.0.0.1";
+// app.(METHOD)<--- method yang dipakai((ROUTE)<--- Route yang dipakai, (CALLBACK)<--- Callback yang dipakai);
+//app.METHOD(ROUTE, CALLBACK)
+// app.get("/", (req, res) => res.send("Hello World!")); //<-----hasil uji coba penggunaan pertama
+
+//coba penerapan rest send pada objek dan berhasil diterapkan
+// app.get("/", (req, res) =>
+//   res.send(
+//     JSON.stringify({
+//       status: "succsess",
+//       message: "response success",
+//     })
+//   )
+// ); //<-----hasil uji coba penggunaan
+
+// uji coba pada res write dan berhasil
+// app.get("/", (req, res) => {
+//   res.write("bachtiar ");
+//   res.write("firdaus");
+//   res.end();
+// });
+
+//uji coba pada method post dan berhasil
+// app.post("/", (req, res) => {
+//   res.send("uji coba request dengan method post");
+// });
+
+//uji coba pada method put dan berhasil
+// app.put("/", (req, res) => {
+//   res.send("uji coba requst dengan method put ");
+// });
+
+//uji coba pada method delete dan berhasil
+// app.delete("/", (req, res) => {
+//   res.send("uji coba request dengan method delete");
+// });
+
+//uji coba penggunaan method all dengan penggunaan function dan berhasil
+// app.all("/universal", function (req, res) {
+//   res.send("request dengan method " + req.method);
+// });
+
+//uji coba penggunaan method all dengan arrow function dan berhasil
+// app.all("/coba", (req, res) => {
+//   res.send(
+//     "uji coba penggunaan method all dengan arrow function dan ini hasilnya sesuai" +
+//       req.method
+//   );
+// });
+//uji coba pembuatan 4 json dan berhasil
+// app.get("/api1", (req, res) => {
+//   res.send(
+//     JSON.stringify({
+//       Id: "0",
+//       Nama: "Bachtiar Firdaus",
+//       Umur: "23 Tahun",
+//     })
+//   );
+// });
+// app.get("/api2", (req, res) => {
+//   res.send(
+//     JSON.stringify({
+//       Id: "0",
+//       Nama: "dayat",
+//       Umur: "23 Tahun",
+//     })
+//   );
+// });
+// app.get("/api3", (req, res) => {
+//   res.send(
+//     JSON.stringify({
+//       Id: "0",
+//       Nama: "ega",
+//       Umur: "23 Tahun",
+//     })
+//   );
+// });
+// app.get("/api4", (req, res) => {
+//   res.send(
+//     JSON.stringify({
+//       Id: "0",
+//       Nama: "elfin",
+//       Umur: "23 Tahun",
+//     })
+//   );
+// });
+
+///////
+
+//uji coba routing dinamis Express JS dan berhasil
+// app.get("/post/:id", (req, res) => {
+//   res.send("artikle -" + req.params.id);
+// });
+
+// uji coba query string pada url
+//dan contoh memanggil (http://localhost:3000/test?page=2&sort=title)
+//dapat dijelaskan sebagai berikut (req.query.nama_parameter)
+// app.get("/test", (req, res) => {
+//   console.log(req.query);
+//   res.end();
+// });
+
+// uji coba dalam bentuk lain menggunakan query string
+// cara pemanggilan http://localhost:3000/uji?page=100000&sort=judul
+// app.get("/uji", (req, res) => {
+//   const page = req.query.page ? req.query.page : 1;
+//   res.write("uji coba penerapan page : " + page + "\n");
+//   if (req.query.sort) res.write("Sort by: " + req.query.sort);
+//   res.end();
+// });
+
+// uji coba penerapan regular expression (regex) pada routing
+//cara pemanggilan http://localhost:3000/page-basinglahapaaja untuk bagian setelah '-' bebas mau nulis apa aja karna dia sudah diroute mau kemanapun dengan *
+// app.get("/page-*", (req, res) => {
+//   res.send("route : " + req.path);
+// });
+
+// uji coba penggabungan penerapan regex dan dinamis routing dan berhasil
+// cara pemanggilan http://localhost:3000/hp/1000000000000000000000 angka setelah'/' itu adalah dimais routing dan di gabung denga regex (req.params.id)
+// app.get("/hp/:id?", (req, res) => {
+//   res.send("artikle-" + req.params.id);
+// });
+
+// uji coba module Router dengan menggunakan metode use
+//cara menggunakan untuk '/' http://localhost:3000/
+//cara menggunakan untuk regex dan dinamis routingnya '/halaman/:id' http://localhost:3000/halaman/10000
+// const routers = require("./routers");
+// app.use(routers);
+
+app.listen(port, () =>
+  console.log(`Server running at http://${hostname}:${port}`)
+);

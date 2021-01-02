@@ -1,0 +1,148 @@
+// //deklarasi routing
+const express = require("express");
+// const bodyParser = require("body-parser");
+const routers = require("./routers");
+const app = express();
+const port = 3000;
+const hostname = "127.0.0.1";
+const path = require("path");
+const cors = require("cors");
+const compression = require("compression");
+
+//Materi Midleware
+//Uji coba
+//req (objek request), res (objek response) dan next (fungsi). <----isi dari midleware
+//constoh app.use(fungsi middleware) dan berhasil
+//hasilnya dapat menampilkan log req pada terminal
+//link pengujian http://localhost:3000/
+// const log = (req, res, next) => {
+//   console.log(Date.now() + " " + req.ip + " " + req.originalUrl);
+//   next();
+// };
+// app.use(log);
+
+//Uji coba pada routing 404 dan berhasil
+//link pengujian http://localhost:3000/
+// app.use((req, res, next) => {
+//   res.status(404).send("resource tidak ditemukan");
+// });
+
+//uji coba routing 404 dengan format JSONdan berhasil
+//link pengujian http://localhost:3000/
+// app.use((req, res, next) => {
+//   res.json({
+//     status: "error",
+//     message: "resource tidak ditemukan",
+//   });
+// });
+
+//uji coba penggunaan midleware dengan kasus lengkap
+//link uji coba http://localhost:3000/ menghasilkan data dari file resource "Hello Daus"
+//jika link diubah menghasilkan error log dengan format json
+//midleware log
+// const log = (req, res, next) => {
+//   console.log(Date.now() + " " + req.ip + " " + req.originalUrl);
+//   next();
+// };
+// app.use(log);
+
+//midleware menangani 404
+// const notFound = (req, res, next) => {
+//   res.json({
+//     status: "error",
+//     message: "resource tidak ditemukan",
+//   });
+// };
+// app.use(notFound);
+
+//uji coba menangani ERROR dengan argumen lain
+//link uji coba http://localhost:3000/ dan tidak berhasil
+// const errorHandling = (err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send("Terjadi kesalahan");
+// };
+// app.use(errorHandling);
+
+//uji coba menangani error dengan argumen lain dan JSON
+//link uji coba http://localhost:3000/ dan tidak berhasil
+// const errorHandling = (err, req, res, next) => {
+//   res.json({
+//     status: "error",
+//     message: "terjadi kesalahan pada server",
+//   });
+// };
+// app.use(errorHandling);
+
+//uji coba request body (body-parser) dan berhasil
+// link uji coba http://localhost:3000/login (di bagian body x-www-form-url-encode)
+//khusus untuk v 4.16+ body parser sudah bisa digunakan tanpa built in
+//struktur yang digunakan  (application/x-www-form-url-encode)
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   })
+// );
+// app.use(bodyParser.json());
+// app.use(routers);
+
+//uji coba penerapan body-parser tanpa built in dan berhasil
+// link uji coba http://localhost:3000/login (di bagian body x-www-form-url-encode)
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   })
+// );
+// app.use(express.json());
+// app.use(routers);
+
+//uji coba file preview (res.sendFile()) dan berhasil
+// link uji coba http://localhost:3000/download
+// app.use(routers);
+
+//uji coba file preview (res.sendFile()) dengan lebih aman menggunakan path dan berhasil
+// link uji coba http://localhost:3000/download
+// app.use(routers);
+
+//uji coba pengubahan nama file terdownload dengan nama file di server side dan berhasil
+// app.use(routers);
+
+//uji coba pengubahan nama file terdownload dengan nama file di server side dengan lebih singkat dan berhasil
+// app.use(routers);
+
+//uji coba menampilkan gambar pada browser menggunakan (Content-Type) dan berhasil
+// app.use(routers);
+
+//uji coba menampilkan gambar pada browser menggunakan (Content-Type) di folder public
+// app.use(express.static("public"));
+// app.use(express.static(path.join(__dirname, "public")));
+// app.use(routers);
+
+//uji coba file upload menggunakan multer dan berhasil
+//localhost:3000/upload
+//app.use(routers);
+
+//uji coba penggunaan multer dan berhasil
+// app.use(routers);
+
+//uji coba penggunaan fs.renameSync(oldPath, newPath). dan berhasil
+// app.use(routers);
+
+//uji coba CORS tidak berhasil
+// app.use(cors());
+
+//uji coba CORS pada testing ke 2
+//berhasil setelah install npm install cors
+// var corsOption = {
+//   origin: "http://example.com",
+// };
+// app.use(cors(corsOption));
+
+//uji coba penggunaan compression
+//Middleware ini akan mencompress menggunakan metode kompresi gzip.
+// encription
+// app.use(compression());
+
+app.listen(port, () => {
+  console.log(`Server Running at http://${hostname}:${port}`);
+});
+
